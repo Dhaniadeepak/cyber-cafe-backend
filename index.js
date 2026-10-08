@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import Transaction from './models/Transaction.js';
-import dns from 'dns'
+import dns from 'node:dns'
 dns.setServers([
   '8.8.8.8',
   '1.1.1.1',
