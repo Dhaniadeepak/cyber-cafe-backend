@@ -7,10 +7,10 @@ const transactionSchema = new mongoose.Schema(
   {
     day: { type: String, required: true, index: true }, // YYYY-MM-DD
     service: { type: String, enum: SERVICES, required: true },
-    customer: { type: String, trim: true, default: '' },
+    customer: { type: String, trim: true, default: '',required:true },
     received: { type: Number, min: 0, default: 0 },
     paid: { type: Number, min: 0, default: 0 },
-    udhar: { type: Number, min: 0, default: 0 },
+    udhar: { type: Number, min: 0 },
     mode: { type: String, enum: MODES, default: 'Cash' },
     remark: { type: String, trim: true, default: '' },
   },
