@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export const SERVICES = ['Aadhaar', 'PAN Card', 'Printout', 'Photocopy', 'PVC Card', 'Online Form', 'Insurance', 'PM Kisan', 'Bill Payment', 'CSC Service', 'Other'];
-export const MODES = ['Cash', 'UPI', 'Bank', 'Card', 'Other'];
+export const MODES = ['Cash', 'UPI', 'Bank', 'Card', 'Udhar', 'Other'];
 
 const transactionSchema = new mongoose.Schema(
   {
@@ -10,6 +10,7 @@ const transactionSchema = new mongoose.Schema(
     customer: { type: String, trim: true, default: '' },
     received: { type: Number, min: 0, default: 0 },
     paid: { type: Number, min: 0, default: 0 },
+    udhar: { type: Number, min: 0, default: 0 },
     mode: { type: String, enum: MODES, default: 'Cash' },
     remark: { type: String, trim: true, default: '' },
   },
