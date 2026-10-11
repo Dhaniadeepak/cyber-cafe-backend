@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const SERVICES = ['Aadhaar', 'PAN Card', 'Printout', 'Photocopy', 'PVC Card', 'Online Form', 'Insurance', 'PM Kisan', 'Bill Payment', 'CSC Service', 'Other'];
+export const SERVICES = ['Aadhaar', 'PAN Card', 'Printout', 'Photocopy', 'PVC Card', 'Online Form', 'Insurance', 'PM Kisan', 'Bill Payment','Photograph', 'CSC Service', 'Other'];
 export const MODES = ['Cash', 'UPI', 'Bank', 'Card', 'Udhar', 'Other'];
 
 const transactionSchema = new mongoose.Schema(
