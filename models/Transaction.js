@@ -11,6 +11,7 @@ const transactionSchema = new mongoose.Schema(
     received: { type: Number, min: 0, default: 0 },
     paid: { type: Number, min: 0, default: 0 },
     udhar: { type: Number, min: 0 },
+    udharReceived: { type: Boolean, default: false },
     mode: { type: String, enum: MODES, default: 'Cash' },
     remark: { type: String, trim: true, default: '' },
   },

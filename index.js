@@ -105,6 +105,38 @@ app.put('/api/transactions/:id', auth, async (req, res, next) => {
   }
 });
 
+app.post('/api/transactions/:id/receive-udhar', auth, async (req, res, next) => {
+  try {
+    const existing = await Transaction.findById(req.params.id);
+    if (!existing) return res.status(404).json({ message: 'Transaction not found' });
+    if (existing.mode !== 'Udhar') {
+      return res.status(400).json({ message: 'Only Udhar transactions can be marked received' });
+    }
+    if (existing.udharReceived) return res.json(existing);
+
+    const amount = Number(existing.udhar ?? (
+      existing.customer?.trim()
+        ? Number(existing.received || 0) - Number(existing.paid || 0)
+        : 0
+    )) || 0;
+    const transaction = await Transaction.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          received: Number(existing.received || 0) + amount,
+          udhar: amount,
+          udharReceived: true,
+        },
+      },
+      { new: true, runValidators: true }
+    );
+
+    return res.json(transaction);
+  } catch (error) {
+    return next(error);
+  }
+});
+
 app.delete('/api/transactions/:id', auth, async (req, res, next) => {
   try {
     const transaction = await Transaction.findByIdAndDelete(req.params.id);
